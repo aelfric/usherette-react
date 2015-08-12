@@ -3,8 +3,6 @@ import {ADD_TICKET, REMOVE_TICKET} from '../constants/ActionTypes.js';
 const initialState = [0,0,0]
 
 export default function tickets(state = initialState, action){
-    console.log('update store');
-    console.log(action.showId);
     var newState = [];
     for (var i = 0; i<state.length; i++){
         newState[i] = state[i];
