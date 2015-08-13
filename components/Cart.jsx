@@ -2,30 +2,29 @@
 
 var React = require('react');
 var ShowReservation = require('./ShowReservation.jsx');
-
-var shows = [
-{"title":"Hamlet", "date":"February 29, 8pm", "tickets":1},
-{"title":"Hamlet","date":"February 30, 8pm", "tickets":2},
-{"title":"Hamlet", "date": "February 31, 2pm", "tickets":5}];
+var moment = require('moment');
 
 module.exports = React.createClass({
     render: function(){
         var self = this;
-        const {addTicket, removeTicket, tickets, initialTickets} = this.props;
-        var showList = shows.map(function(show, index){
+        const {data, addTicket, removeTicket, tickets, initialTickets, ticketsRemaining} = this.props;
+        var showList = data.tickets.map(function(ticket, index){
             return <ShowReservation 
-                title={show.title} 
-                datetime={show.date} 
+                title={ticket.performance.show.title} 
+                datetime={moment(ticket.performance.date).format('MMMM D, h:mm a')} 
             addTicket={addTicket}
             removeTicket={removeTicket}
             showId={index} 
-            numTickets={show.tickets + tickets[index]} />
+            initialNumTickets = {ticket.quantity}
+            changeNumTickets={tickets[index]} />
         });
-        var ticketsRemaining = -1 * tickets.reduce(function(cv, pv) { return cv + pv});
         return (
                 <div>
+                <p>{data.order_firstname} {data.order_lastname}</p>
+                <p>{data.payment_type}</p>
                 {showList}
                 <p>{ticketsRemaining} left</p>
+                <button disabled={ticketsRemaining !== 0}>Save</button>
                 </div>
                )
     }
