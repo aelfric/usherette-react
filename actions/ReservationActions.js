@@ -2,9 +2,14 @@
 import * as types from '../constants/ActionTypes.js';
 
 export function addTicket(showId){
-    return {
-        type: types.ADD_TICKET,
-        showId: showId
+    return (dispatch, getState) => {
+        const {ticketsRemaining} = getState();
+        if (ticketsRemaining > 0){
+            dispatch({
+                type: types.ADD_TICKET,
+                showId: showId
+            })
+        }
     }
 }
 

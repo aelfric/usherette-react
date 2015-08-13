@@ -9,13 +9,15 @@ module.exports = React.createClass({
     propTypes: {
         actions: React.PropTypes.object
     },
-
+    getState: function(){
+        return this.context.atom;
+    },
     performAction: function(actionCreator, ...args) {
         const { dispatch } = this.context;
         const payload = actionCreator(...args);
 
         return typeof payload === 'function'
-            ? payload(dispatch)
+            ? payload(dispatch, this.getState)
             : dispatch(payload);
     },
     render: function() {
