@@ -6,9 +6,10 @@ module.exports = React.createClass({
     render: function(){
         const {title, datetime, initialNumTickets, changeNumTickets, showId, addTicket, removeTicket} = this.props;
         return (
-                <p>{title} - {datetime} <span>{initialNumTickets + changeNumTickets}</span>
-                <button onClick={addTicket.bind(this, showId, initialNumTickets, changeNumTickets)}>+</button>
-                <button onClick={removeTicket.bind(this, showId, initialNumTickets, changeNumTickets)}>-</button></p>
+                <p>{title} - {datetime}
+                <button onClick={removeTicket.bind(this, showId, initialNumTickets, changeNumTickets)}>-</button>
+                <span className='numTickets'>{initialNumTickets + changeNumTickets}</span>
+                <button onClick={addTicket.bind(this, showId, initialNumTickets, changeNumTickets)}>+</button></p>
                )
     }
 })
