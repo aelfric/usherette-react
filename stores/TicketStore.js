@@ -5,14 +5,14 @@ const initialState = [0,0,0]
 export function tickets(state = initialState, action){
     var newState = [];
     for (var i = 0; i<state.length; i++){
-        newState[i] = state[i];
+        newState[i] = Object.assign({}, {delta: 0}, state[i]);
     }
     switch(action.type){
         case ADD_TICKET:
-             newState[action.showId] += 1;
+             newState[action.showId].delta += 1;
              return newState;
         case REMOVE_TICKET:
-             newState[action.showId] -= 1;
+             newState[action.showId].delta -= 1;
              return newState;
         default:
              return newState;

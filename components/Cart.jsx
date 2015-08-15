@@ -5,26 +5,30 @@ var ShowReservation = require('./ShowReservation.jsx');
 var moment = require('moment');
 
 module.exports = React.createClass({
+    contextTypes: {
+        atom: React.PropTypes.any
+    },
     render: function(){
         var self = this;
-        const {data, addTicket, removeTicket, tickets, initialTickets, ticketsRemaining} = this.props;
-        var showList = data.tickets.map(function(ticket, index){
+        const {tickets, addTicket, removeTicket} = this.props;
+        const {atom} = this.context;
+        var showList = atom.tickets.map(function(ticket, index){
             return <ShowReservation 
                 title={ticket.performance.show.title} 
                 datetime={moment(ticket.performance.date).format('MMMM D, h:mm a')} 
+            showId={index} 
+            ticket={ticket}
             addTicket={addTicket}
             removeTicket={removeTicket}
-            showId={index} 
-            initialNumTickets = {ticket.quantity}
-            changeNumTickets={tickets[index]} />
+            />
         });
         return (
                 <div>
-                <p>{data.order_firstname} {data.order_lastname}</p>
-                <p>{data.payment_type}</p>
+                <p>{atom.order_firstname} {atom.order_lastname}</p>
+                <p>{atom.payment_type}</p>
                 {showList}
-                <p>{ticketsRemaining} left</p>
-                <button disabled={ticketsRemaining !== 0}>Save</button>
+                <p>{atom.ticketsRemaining} left</p>
+                <button disabled={atom.ticketsRemaining !== 0}>Save</button>
                 </div>
                )
     }

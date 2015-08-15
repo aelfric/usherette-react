@@ -4,12 +4,12 @@ var React = require('react');
 
 module.exports = React.createClass({
     render: function(){
-        const {title, datetime, initialNumTickets, changeNumTickets, showId, addTicket, removeTicket} = this.props;
+        const {title, datetime, ticket, showId, addTicket, removeTicket} = this.props;
         return (
                 <p>{title} - {datetime}
-                <button onClick={removeTicket.bind(this, showId, initialNumTickets, changeNumTickets)}>-</button>
-                <span className='numTickets'>{initialNumTickets + changeNumTickets}</span>
-                <button onClick={addTicket.bind(this, showId, initialNumTickets, changeNumTickets)}>+</button></p>
+                <button onClick={removeTicket.bind(this, showId)}>-</button>
+                <span className='numTickets'>{ticket.quantity + ticket.delta}</span>
+                <button onClick={addTicket.bind(this, showId)}>+</button></p>
                )
     }
 })

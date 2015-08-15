@@ -13,13 +13,15 @@ export function addTicket(showId){
     }
 }
 
-export function removeTicket(showId, initialNumTickets, changeNumTickets){
-    if ((initialNumTickets + changeNumTickets) > 0) {
-        return {
-            type: types.REMOVE_TICKET,
-            showId: showId
-        }
-    } else {
-        return {}
+export function removeTicket(showId){
+    return (dispatch, getState) => {
+        const {tickets} = getState();
+
+        if ((tickets[showId].quantity + tickets[showId].delta) > 0) {
+            dispatch({
+                type: types.REMOVE_TICKET,
+                showId: showId
+            })
+        }  
     }
 }
