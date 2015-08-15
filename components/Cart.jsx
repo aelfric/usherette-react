@@ -2,6 +2,7 @@
 
 var React = require('react');
 var ShowReservation = require('./ShowReservation.jsx');
+var SaveButton = require('./SaveButton.jsx');
 var moment = require('moment');
 
 module.exports = React.createClass({
@@ -27,8 +28,7 @@ module.exports = React.createClass({
                 <p>{atom.order_firstname} {atom.order_lastname}</p>
                 <p>{atom.payment_type}</p>
                 {showList}
-                <p>{atom.ticketsRemaining} left</p>
-                <button disabled={atom.ticketsRemaining !== 0}>Save</button>
+                <SaveButton ticketsRemaining={atom.ticketsRemaining} />
                 </div>
                )
     }
