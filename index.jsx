@@ -9,8 +9,11 @@ import data from './data.js';
 import * as actions from './actions/ReservationActions.js';
 
 var store = function(state=data, action){
-    return Object.assign({}, state, {tickets: tickets(state.tickets, action),
-    ticketsRemaining: ticketsRemaining(state.ticketsRemaining, action)})
+    return Object.assign({}, 
+            state, {
+                tickets: tickets(state.tickets, action),
+                ticketsRemaining: ticketsRemaining(state.ticketsRemaining, action)
+            })
 }
 React.render(
         <Dispatcher store={store}>{() => (
