@@ -11,14 +11,18 @@ module.exports = React.createClass({
     render: function(){
         const {venueSize, walkIns, outstandingReservations, tickets} = this.context.atom;
         var list = tickets.map((ticket, index) => {
-            return (<p>
+            return (<tr>
+                    <td>
                     <button onClick={this.props.claimTicket.bind(this, index)}>Claim</button>
                     <button onClick={this.props.unclaimTicket.bind(this, index)}>Unclaim</button>
                     <button onClick={this.props.releaseTicket.bind(this, index)}>Release</button>
-                    <span>{ticket.name}</span> 
-                    <span>{"(x)".repeat(ticket.numClaimed)}</span>
-                    <span>{"()".repeat(ticket.quantity - ticket.numClaimed)}</span>
-                    </p>);
+                    </td>
+                    <td>{ticket.name}</td>
+                    <td>
+                    <span className='fa icon-fooo'>{String.fromCharCode(0xf046).repeat(ticket.numClaimed)}
+                    {String.fromCharCode(0xf096).repeat(ticket.quantity - ticket.numClaimed)}</span>
+                    </td>
+                    </tr>);
         })
         var claimedTickets = tickets.reduce((a,b) => {return a + b.numClaimed},0);
         var tableRow = function(a,b){
@@ -34,6 +38,8 @@ module.exports = React.createClass({
             {tableRow("Seats Remaining:" , venueSize - claimedTickets - outstandingReservations - walkIns)}
             </tbody>
             </table>
-            {list}</div>
+            <table>
+            {list}
+            </table></div>
     }
 })
