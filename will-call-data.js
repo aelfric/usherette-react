@@ -1,18 +1,16 @@
-module.exports = {"order_firstname":'John',
-    "order_lastname":'Smith',
-    "payment_type":"paypal",
-    "tickets":[
-        {"performance_id":20,
-            "quantity":3,
-            "performance":{"date":"2015-08-07T20:00:00",
-                "show":{"title":"The Vagina Monologues"}}},
-        {"performance_id":21,
-            "quantity":0,
-            "performance":{"date":"2015-08-08T20:00:00",
-                "show":{"title":"The Vagina Monologues"}}},
-        {"performance_id":22,
-            "quantity":0,
-            "performance":{"date":"2015-08-09T14:00:00",
-                "show":{"title":"The Vagina Monologues"}}}
-    ]}  
+module.exports = {
+    venueSize: 88,
+    tickets: [ 
+    {name: "Markus Mingus", quantity: 4},
+    {name: "Leonore Lachowicz", quantity: 2},
+    {name: "Thaddeus Toole", quantity: 10},
+    {name: "Hana Huddle", quantity: 1},
+    {name: "Demetrice Devito", quantity: 1},
+    {name: "Charlyn Colley", quantity: 3},
+    {name: "Alaine Acey", quantity: 5},
+    {name: "Armida Albers", quantity: 2},
+    {name: "Hermina Hepp", quantity: 1},
+    {name: "Idella Iadarola", quantity: 1}
+    ]
+}  
 
